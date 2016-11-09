@@ -769,6 +769,21 @@
           "lib/netstandard1.3/Microsoft.EntityFrameworkCore.dll": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.Design/1.1.0-preview1-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Hosting.Abstractions": "1.1.0-preview1-final",
+          "Microsoft.EntityFrameworkCore.Relational.Design": "1.1.0-preview1-final",
+          "NETStandard.Library": "1.6.1-preview1-24530-04",
+          "System.Collections.NonGeneric": "4.3.0-preview1-24530-04"
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Design.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Design.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/1.1.0-preview1-final": {
         "type": "package",
         "dependencies": {
@@ -783,6 +798,19 @@
         },
         "runtime": {
           "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.dll": {}
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Relational.Design/1.1.0-preview1-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "1.1.0-preview1-final",
+          "NETStandard.Library": "1.6.1-preview1-24530-04"
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll": {}
         }
       },
       "Microsoft.Extensions.Caching.Abstractions/1.1.0-preview1-final": {
@@ -4039,6 +4067,19 @@
         "lib/netstandard1.3/Microsoft.EntityFrameworkCore.xml"
       ]
     },
+    "Microsoft.EntityFrameworkCore.Design/1.1.0-preview1-final": {
+      "sha512": "H0MsMEwxVsKA/QaoEk+YOorTqWfDGy99vTu6EUT/4xYWEUBTm3ebwyLIn63cfJEYsMrDD8ZTHJ8i4KpLJLYr7Q==",
+      "type": "package",
+      "path": "Microsoft.EntityFrameworkCore.Design/1.1.0-preview1-final",
+      "files": [
+        "Microsoft.EntityFrameworkCore.Design.1.1.0-preview1-final.nupkg.sha512",
+        "Microsoft.EntityFrameworkCore.Design.nuspec",
+        "lib/net451/Microsoft.EntityFrameworkCore.Design.dll",
+        "lib/net451/Microsoft.EntityFrameworkCore.Design.xml",
+        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Design.dll",
+        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Design.xml"
+      ]
+    },
     "Microsoft.EntityFrameworkCore.Relational/1.1.0-preview1-final": {
       "sha512": "X1y9ut/rUTph6VBURrpuZznTR7TM1hpwtWcZ9o1L0uFnj/6FwvQlhdct1mXlcNnts+jgoIir/o1V0q3jcdTCBQ==",
       "type": "package",
@@ -4050,6 +4091,19 @@
         "lib/net451/Microsoft.EntityFrameworkCore.Relational.xml",
         "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.dll",
         "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.xml"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore.Relational.Design/1.1.0-preview1-final": {
+      "sha512": "KcU4KN0L7QLuly/J5NP+VxHKC1odvoPPAmE4+BfBnMT9vJa/psYG8V62se4ED5zT0LqP5d+fceFe+M5dLoX6KQ==",
+      "type": "package",
+      "path": "Microsoft.EntityFrameworkCore.Relational.Design/1.1.0-preview1-final",
+      "files": [
+        "Microsoft.EntityFrameworkCore.Relational.Design.1.1.0-preview1-final.nupkg.sha512",
+        "Microsoft.EntityFrameworkCore.Relational.Design.nuspec",
+        "lib/net451/Microsoft.EntityFrameworkCore.Relational.Design.dll",
+        "lib/net451/Microsoft.EntityFrameworkCore.Relational.Design.xml",
+        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.dll",
+        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.Design.xml"
       ]
     },
     "Microsoft.Extensions.Caching.Abstractions/1.1.0-preview1-final": {
@@ -9407,12 +9461,48 @@
     ".NETCoreApp,Version=v1.1": [
       "Microsoft.AspNetCore.Mvc >= 1.1.0-preview1-final",
       "Microsoft.AspNetCore.Server.Kestrel >= 1.1.0-preview1-final",
+      "Microsoft.EntityFrameworkCore.Design >= 1.1.0-preview1-final",
       "Microsoft.Extensions.Configuration.CommandLine >= 1.0.0",
       "Microsoft.NETCore.App >= 1.1.0-preview1-001100-00",
       "Npgsql >= 3.1.8",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 1.1.0-preview1-final"
     ]
   },
-  "tools": {},
-  "projectFileToolGroups": {}
+  "tools": {
+    ".NETCoreApp,Version=v1.0": {
+      "Microsoft.EntityFrameworkCore.Tools.DotNet/1.0.0-preview3-final": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.DotNet.Cli.Utils": "1.0.0-preview2-003121",
+          "Microsoft.NETCore.App": "1.0.0"
+        },
+        "compile": {
+          "lib/netcoreapp1.0/dotnet-ef.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/dotnet-ef.dll": {}
+        }
+      },
+      "DotNetOutdated/1.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.App": "1.0.0",
+          "Newtonsoft.Json": "9.0.1",
+          "NuGet.Versioning": "3.5.0-beta2-1484"
+        },
+        "compile": {
+          "lib/netcoreapp1.0/dotnet-outdated.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/dotnet-outdated.dll": {}
+        }
+      }
+    }
+  },
+  "projectFileToolGroups": {
+    ".NETCoreApp,Version=v1.0": [
+      "DotNetOutdated >= 1.2.0",
+      "Microsoft.EntityFrameworkCore.Tools.DotNet >= 1.0.0-preview3-final"
+    ]
+  }
 }

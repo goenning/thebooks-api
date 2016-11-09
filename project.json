@@ -4,7 +4,7 @@
     "debugType": "portable",
     "emitEntryPoint": true
   },
-  "dependencies": {},
+  "dependencies": { },
   "frameworks": {
     "netcoreapp1.1": {
       "dependencies": {
@@ -15,10 +15,23 @@
         "Microsoft.AspNetCore.Server.Kestrel": "1.1.0-preview1-final",
         "Microsoft.AspNetCore.Mvc": "1.1.0-preview1-final",
         "Npgsql": "3.1.8",
+        "Microsoft.EntityFrameworkCore.Design": {
+            "version":  "1.1.0-preview1-final",
+            "type": "build"
+        },
         "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0-preview1-final",
         "Microsoft.Extensions.Configuration.CommandLine": "1.0.0"
       },
       "imports": "dnxcore50"
     }
+  },
+  "tools": {
+    "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.0.0-preview3-final",
+    "DotNetOutdated": "1.2.0"
+  },
+  "scripts": {
+    "prepublish": [
+      "dotnet ef database update"
+    ]
   }
 }
