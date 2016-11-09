@@ -1,13 +1,30 @@
 using Microsoft.AspNetCore.Mvc;
+using TheBooks.Api.Models;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace TheBooks.Api.Controllers
 { 
   public class BookController : Controller
-  {
+    {
+        private TheBooksContext db;
+
+        public BookController(TheBooksContext db)
+        {
+            this.db = db;
+        }
+        
       [Route("books")]
-      public IActionResult Index()
+      public IEnumerable<Book> List(string accessToken)
       {
-          return Ok("Hello World from a controller");
+          var library = this.db.Libraries.FirstOrDefault(x => x.AccessToken == accessToken);
+          if (library == null)
+          {
+              library = new Library() { AccessToken = accessToken };
+              this.db.Libraries.Add(library);
+              this.db.SaveChanges();
+          }
+          return library.Books;
       }
   }
 }

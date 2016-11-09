@@ -8,9 +8,10 @@ using TheBooks.Api.Models;
 namespace TheBooks.Api.Migrations
 {
     [DbContext(typeof(TheBooksContext))]
-    partial class TheBooksContextModelSnapshot : ModelSnapshot
+    [Migration("20161109171552_RenameApiKey")]
+    partial class RenameApiKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1");

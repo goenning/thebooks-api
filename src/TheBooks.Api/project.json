@@ -26,7 +26,7 @@
     }
   },
   "tools": {
-    "DotNetOutdated": "1.2.0",
+    "DotNetOutdated": "1.2.1",
     "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.0.0-preview3-final"
   },
   "scripts": {
