@@ -4,8 +4,9 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace TheBooks.Api.Controllers
-{ 
-  public class BookController : Controller
+{
+    [Produces("application/json")]
+    public class BookController : Controller
     {
         private TheBooksContext db;
 
@@ -14,7 +15,7 @@ namespace TheBooks.Api.Controllers
             this.db = db;
         }
         
-      [Route("books")]
+      [HttpGet, Route("books")]
       public IEnumerable<Book> List(string accessToken)
       {
           var library = this.db.Libraries.FirstOrDefault(x => x.AccessToken == accessToken);

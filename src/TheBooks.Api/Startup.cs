@@ -22,11 +22,14 @@ namespace TheBooks.Api
             var connectionString = GetDatabaseUrl();
             services.AddDbContext<TheBooksContext>(options => options.UseNpgsql(connectionString));
             services.AddMvc();
+            services.AddSwaggerGen();
         }
  
         public void Configure(IApplicationBuilder app)
         {
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUi();
         }
     }
 }
