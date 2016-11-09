@@ -6,7 +6,7 @@ namespace TheBooks.Api.Utils
     {
         public static string FormatUrlToConnectionString(string databaseUrl)
         {
-            var connectionStringFormat = "Host={0};Port={1};Database={2};Username={3};Password={4};SSL Mode=Require;";
+            var connectionStringFormat = "Host={0};Port={1};Database={2};Username={3};Password={4};SSL Mode=Require;Trust Server Certificate=true;";
             var url = new Uri(databaseUrl);
             var userInfo = url.UserInfo.Split(new[] { ':' }, 2);
             var userName = userInfo[0];
