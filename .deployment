@@ -1,0 +1,3 @@
+[config]
+project = src/TheBooks.Api/project.json
+use_reverse_proxy = true
