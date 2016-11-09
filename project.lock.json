@@ -9482,26 +9482,11 @@
         "runtime": {
           "lib/netcoreapp1.0/dotnet-ef.dll": {}
         }
-      },
-      "DotNetOutdated/1.2.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.NETCore.App": "1.0.0",
-          "Newtonsoft.Json": "9.0.1",
-          "NuGet.Versioning": "3.5.0-beta2-1484"
-        },
-        "compile": {
-          "lib/netcoreapp1.0/dotnet-outdated.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp1.0/dotnet-outdated.dll": {}
-        }
       }
     }
   },
   "projectFileToolGroups": {
     ".NETCoreApp,Version=v1.0": [
-      "DotNetOutdated >= 1.2.0",
       "Microsoft.EntityFrameworkCore.Tools.DotNet >= 1.0.0-preview3-final"
     ]
   }
