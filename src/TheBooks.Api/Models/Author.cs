@@ -1,4 +1,4 @@
-namespace TheBooks.Api.Model
+namespace TheBooks.Api.Models
 { 
   public class Author
   {

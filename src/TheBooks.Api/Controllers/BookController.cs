@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace TheBooks.Api
+namespace TheBooks.Api.Controllers
 { 
   public class BookController : Controller
   {
