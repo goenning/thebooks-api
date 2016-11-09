@@ -5,17 +5,16 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using TheBooks.Api.Models;
 
-namespace thebooksapi.Migrations
+namespace TheBooks.Api.Migrations
 {
     [DbContext(typeof(TheBooksContext))]
-    [Migration("20161109115802_InitialSetup")]
+    [Migration("20161109143119_InitialSetup")]
     partial class InitialSetup
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "1.1.0-preview1-22509");
+                .HasAnnotation("ProductVersion", "1.0.1");
 
             modelBuilder.Entity("TheBooks.Api.Models.Author", b =>
                 {
@@ -58,6 +57,8 @@ namespace thebooksapi.Migrations
                     b.HasKey("BookId", "AuthorId");
 
                     b.HasIndex("AuthorId");
+
+                    b.HasIndex("BookId");
 
                     b.ToTable("BookAuthor");
                 });

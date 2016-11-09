@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace thebooksapi.Migrations
+namespace TheBooks.Api.Migrations
 {
     public partial class InitialSetup : Migration
     {
@@ -14,7 +13,7 @@ namespace thebooksapi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -27,7 +26,7 @@ namespace thebooksapi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
                     ApiKey = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -40,7 +39,7 @@ namespace thebooksapi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
                     ISBN = table.Column<string>(nullable: true),
                     LibraryId = table.Column<int>(nullable: true),
                     Pages = table.Column<int>(nullable: false),
@@ -90,6 +89,11 @@ namespace thebooksapi.Migrations
                 name: "IX_BookAuthor_AuthorId",
                 table: "BookAuthor",
                 column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookAuthor_BookId",
+                table: "BookAuthor",
+                column: "BookId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
