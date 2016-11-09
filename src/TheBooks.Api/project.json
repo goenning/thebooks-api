@@ -6,26 +6,27 @@
   },
   "dependencies": { },
   "frameworks": {
-    "netcoreapp1.1": {
+    "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
           "type": "platform",
-          "version": "1.1.0-preview1-001100-00"
+          "version": "1.0.1"
         },
-        "Microsoft.AspNetCore.Server.Kestrel": "1.1.0-preview1-final",
-        "Microsoft.AspNetCore.Mvc": "1.1.0-preview1-final",
+        "Microsoft.AspNetCore.Server.Kestrel": "1.0.1",
+        "Microsoft.AspNetCore.Mvc": "1.0.1",
         "Npgsql": "3.1.8",
         "Microsoft.EntityFrameworkCore.Design": {
-            "version":  "1.1.0-preview1-final",
+            "version": "1.0.1",
             "type": "build"
         },
-        "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0-preview1-final",
+        "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.2",
         "Microsoft.Extensions.Configuration.CommandLine": "1.0.0"
       },
       "imports": "dnxcore50"
     }
   },
   "tools": {
+    "DotNetOutdated": "1.2.0",
     "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.0.0-preview3-final"
   },
   "scripts": {
