@@ -32,7 +32,7 @@
   "scripts": {
     "prepublish": [
       "npm install",
-      "npm run migrate-up"
+      "(cd ../../; npm run migrate-up)"
     ]
   }
 }

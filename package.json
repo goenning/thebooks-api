@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo 'Nothing to test...'",
-    "migrate-up": "db-migrate up --config ./Migrations/database.json",
-    "migrate-down": "db-migrate down --config ./Migrations/database.json"
+    "migrate-up": "db-migrate up --config ../../Migrations/database.json",
+    "migrate-down": "db-migrate down --config ../../Migrations/database.json"
   },
   "dependencies": {
     "db-migrate": "^0.10.0-beta.20",
