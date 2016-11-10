@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using TheBooks.Api.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
 using TheBooks.Api.Utils;
+using System.Data.Common;
+using Npgsql;
+using Serilog;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Hosting;
 
 namespace TheBooks.Api
 {
@@ -19,14 +22,28 @@ namespace TheBooks.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = GetDatabaseUrl();
-            services.AddDbContext<TheBooksContext>(options => options.UseNpgsql(connectionString));
+            services.AddScoped<DbConnection>((provider) => {
+                var connectionString = GetDatabaseUrl();
+                Log.Information($"Creating new DbConnection to '{connectionString}'.");
+                return new NpgsqlConnection(connectionString);
+            });
             services.AddMvc();
             services.AddSwaggerGen();
+            
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .Enrich.FromLogContext()
+                .WriteTo.LiterateConsole()
+                .CreateLogger();
         }
  
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, 
+                              ILoggerFactory loggerFactory, 
+                              IApplicationLifetime appLifetime)
         {
+            loggerFactory.AddSerilog();
+            appLifetime.ApplicationStopped.Register(Log.CloseAndFlush);
+
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUi();

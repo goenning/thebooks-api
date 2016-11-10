@@ -6,6 +6,6 @@ namespace TheBooks.Api.Models
   {
       public int Id { get; set; }
       public string Name { get; set; }
-      public List<BookAuthor> Books { get; set; }
+      public List<Book> Books { get; set; }
   }
 }

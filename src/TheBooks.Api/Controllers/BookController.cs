@@ -1,31 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
 using TheBooks.Api.Models;
-using System.Linq;
 using System.Collections.Generic;
+using System.Data.Common;
+using Dapper;
 
 namespace TheBooks.Api.Controllers
 {
     [Produces("application/json")]
     public class BookController : Controller
     {
-        private TheBooksContext db;
+        private DbConnection db;
 
-        public BookController(TheBooksContext db)
+        public BookController(DbConnection db)
         {
             this.db = db;
         }
         
-      [HttpGet, Route("books")]
-      public IEnumerable<Book> List(string accessToken)
-      {
-          var library = this.db.Libraries.FirstOrDefault(x => x.AccessToken == accessToken);
-          if (library == null)
-          {
-              library = new Library() { AccessToken = accessToken };
-              this.db.Libraries.Add(library);
-              this.db.SaveChanges();
-          }
-          return library.Books;
-      }
+        [HttpGet, Route("books")]
+        public IEnumerable<Book> List(string accessToken)
+        {
+            var library = this.db.QueryFirstOrDefault<Library>("SELECT \"Id\", \"AccessToken\" FROM \"Libraries\" WHERE \"AccessToken\" = @accessToken", new { accessToken });
+            if (library == null)
+                library = new Library() { AccessToken = accessToken };
+            return library.Books;
+        }
   }
 }
