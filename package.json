@@ -1,0 +1,12 @@
+{
+  "name": "thebooks-api",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo 'Nothing to test...'",
+    "migrate-up": "db-migrate up --config ./Migrations/database.json"
+  },
+  "dependencies": {
+    "db-migrate": "^0.10.0-beta.20",
+    "db-migrate-pg": "^0.1.11"
+  }
+}

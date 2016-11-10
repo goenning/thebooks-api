@@ -22,6 +22,8 @@ namespace TheBooks.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
+            
             services.AddScoped<DbConnection>((provider) => {
                 var connectionString = GetDatabaseUrl();
                 Log.Information($"Creating new DbConnection to '{connectionString}'.");

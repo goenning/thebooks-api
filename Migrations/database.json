@@ -1,0 +1,10 @@
+{
+  "dev": {
+    "driver": "pg",
+    "user": "thebooks",
+    "password": "thebooks-pw",
+    "host": "localhost",
+    "database": "thebooks",
+    "port": 5555
+  }
+}

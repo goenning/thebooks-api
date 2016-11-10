@@ -19,9 +19,11 @@ namespace TheBooks.Api.Controllers
         [HttpGet, Route("books")]
         public IEnumerable<Book> List(string accessToken)
         {
-            var library = this.db.QueryFirstOrDefault<Library>("SELECT \"Id\", \"AccessToken\" FROM \"Libraries\" WHERE \"AccessToken\" = @accessToken", new { accessToken });
-            if (library == null)
+            var library = this.db.QueryFirstOrDefault<Library>("SELECT id, access_token FROM libraries WHERE access_token = @accessToken", new { accessToken });
+            if (library == null) {
+                this.db.Execute(@"INSERT INTO libraries (access_token, created_on, modified_on) values (@accessToken, now(), now())",  new { accessToken });
                 library = new Library() { AccessToken = accessToken };
+            }
             return library.Books;
         }
   }

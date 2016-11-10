@@ -28,5 +28,11 @@
   "tools": {
     "DotNetOutdated": "1.2.1",
     "Microsoft.DotNet.Watcher.Tools": "1.0.0-preview2-final"
+  },
+  "scripts": {
+    "prepublish": [
+      "npm install",
+      "npm test"
+    ]
   }
 }
