@@ -1,17 +1,8 @@
 language: csharp
+dotnet: 1.0.0-preview2-003131
+mono: none
 
-matrix:
-  include:
-    - os: osx
-      osx_image: xcode7.3
-      dotnet: 1.0.0-preview2-003131
-      mono: none
-      sudo: required
-    - os: linux
-      dist: trusty
-      sudo: required
-      dotnet: 1.0.0-preview2-003131
-      mono: none
+sudo: required
 
 services:
   - docker
