@@ -29,9 +29,19 @@ namespace TheBooks.Api
                 Log.Information($"Creating new DbConnection to '{connectionString}'.");
                 return new NpgsqlConnection(connectionString);
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAny",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials() );
+            });
+            
             services.AddMvc();
             services.AddSwaggerGen();
-            
+
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .Enrich.FromLogContext()
@@ -45,7 +55,7 @@ namespace TheBooks.Api
         {
             loggerFactory.AddSerilog();
             appLifetime.ApplicationStopped.Register(Log.CloseAndFlush);
-
+            app.UseCors("AllowAny");
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUi();

@@ -1810,7 +1810,7 @@
           }
         }
       },
-      "Serilog/2.3.0": {
+      "Serilog/2.0.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.0.1",
@@ -4083,7 +4083,6 @@
           "Microsoft.Extensions.Configuration.CommandLine": "1.0.0",
           "Microsoft.NETCore.App": "1.0.1",
           "Npgsql": "3.1.8",
-          "Serilog": "2.3.0",
           "Serilog.Extensions.Logging": "1.2.0",
           "Serilog.Sinks.Literate": "2.0.0",
           "Swashbuckle": "6.0.0-beta902"
@@ -5639,17 +5638,15 @@
         "runtimes/win7-x86/native/sni.dll"
       ]
     },
-    "Serilog/2.3.0": {
-      "sha512": "JJMEqTUGe/bA4OEMefGd8W6si9oStSa3CF47dIHzkRKJHqFWFOW8D2aZTOW6VIgNLY2hzruQXhvp2tX0NVkgsw==",
+    "Serilog/2.0.0": {
+      "sha512": "PKR/FMxfHOhX1p3Qs54Uv9dJEC09sI91cVz39Jt/2f/BpCYHTt9F1RpogSJTFU9xxW6j9FHd+P7aBcC0qMeuqg==",
       "type": "package",
-      "path": "Serilog/2.3.0",
+      "path": "Serilog/2.0.0",
       "files": [
-        "Serilog.2.3.0.nupkg.sha512",
+        "Serilog.2.0.0.nupkg.sha512",
         "Serilog.nuspec",
         "lib/net45/Serilog.dll",
         "lib/net45/Serilog.xml",
-        "lib/net46/Serilog.dll",
-        "lib/net46/Serilog.xml",
         "lib/netstandard1.0/Serilog.dll",
         "lib/netstandard1.0/Serilog.xml",
         "lib/netstandard1.3/Serilog.dll",

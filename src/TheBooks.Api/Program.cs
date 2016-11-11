@@ -11,7 +11,7 @@ namespace TheBooks.Api
             var config = new ConfigurationBuilder().AddCommandLine(args).Build();
 
             var host = new WebHostBuilder()
-            .UseKestrel()
+            .UseKestrel(x => { x.AddServerHeader = false; })
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseConfiguration(config)
             .UseStartup<Startup>()
