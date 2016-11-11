@@ -10,3 +10,13 @@ services:
     environment:
       POSTGRES_USER: thebooks
       POSTGRES_PASSWORD: thebooks-pw
+  postgres-test:
+    restart: always
+    image: postgres:9.4
+    volumes:
+      - ./data/postgres-test:/var/lib/postgresql/data
+    ports:
+      - "5556:5432"
+    environment:
+      POSTGRES_USER: thebooks-test
+      POSTGRES_PASSWORD: thebooks-test-pw

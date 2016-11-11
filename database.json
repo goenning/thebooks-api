@@ -1,0 +1,21 @@
+{
+  "heroku": { 
+    "ENV": "DATABASE_URL" 
+  },
+  "dev": { 
+    "driver": "pg",
+    "user": "thebooks",
+    "port": "5555",
+    "password": "thebook-pw",
+    "host": "localhost",
+    "database": "thebooks"
+  },
+  "test": { 
+    "driver": "pg",
+    "user": "thebooks-test",
+    "port": "5556",
+    "password": "thebooks-test-pw",
+    "host": "localhost",
+    "database": "thebooks-test"
+  }
+}

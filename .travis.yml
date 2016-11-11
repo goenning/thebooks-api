@@ -1,0 +1,7 @@
+language: csharp
+dotnet: 1.0.0-preview2.1-003155
+mono: none
+
+script:
+  - dotnet restore 
+  - dotnet test test/TheBooks.Tests/

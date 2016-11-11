@@ -1,5 +1,0 @@
-{
-  "pg": { 
-    "ENV": "DATABASE_URL" 
-  }
-}

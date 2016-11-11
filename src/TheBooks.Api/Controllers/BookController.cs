@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using TheBooks.Api.Models;
-using System.Collections.Generic;
 using System.Data.Common;
 using Dapper;
+using System.Threading.Tasks;
 
 namespace TheBooks.Api.Controllers
 {
@@ -17,14 +17,14 @@ namespace TheBooks.Api.Controllers
         }
         
         [HttpGet, Route("books")]
-        public IEnumerable<Book> List(string accessToken)
+        public async Task<IActionResult> List(string accessToken)
         {
-            var library = this.db.QueryFirstOrDefault<Library>("SELECT id, access_token FROM libraries WHERE access_token = @accessToken", new { accessToken });
+            var library = await this.db.QueryFirstOrDefaultAsync<Library>("SELECT id, access_token FROM libraries WHERE access_token = @accessToken", new { accessToken });
             if (library == null) {
                 this.db.Execute(@"INSERT INTO libraries (access_token, created_on, modified_on) values (@accessToken, now(), now())",  new { accessToken });
                 library = new Library() { AccessToken = accessToken };
             }
-            return library.Books;
+            return Ok(library.Books);
         }
   }
 }
