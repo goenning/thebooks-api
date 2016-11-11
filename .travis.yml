@@ -13,3 +13,4 @@ before_script:
 
 script:
   - dotnet restore 
+  - dotnet test test/TheBooks.Tests/
