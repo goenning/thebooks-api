@@ -1,6 +1,15 @@
 language: csharp
-dotnet: 1.0.0-preview2.1-003155
+dotnet: 1.0.0-preview2-003131
 mono: none
+
+sudo: required
+
+services:
+  - docker
+
+before_script:
+  - docker-compose up -d postgres-test
+  - sleep 3
 
 script:
   - dotnet restore 
