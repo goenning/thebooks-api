@@ -6,7 +6,7 @@
     "driver": "pg",
     "user": "thebooks",
     "port": "5555",
-    "password": "thebook-pw",
+    "password": "thebooks-pw",
     "host": "localhost",
     "database": "thebooks"
   },

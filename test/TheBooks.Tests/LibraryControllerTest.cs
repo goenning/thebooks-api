@@ -33,17 +33,17 @@ namespace TheBooks.Tests
         [Fact]
         public async void ShouldCreateNewLibrary() 
         {
-            var library = await this.ExecuteAction<NewLibrary>(x => x.CreateNew("The .NET Library"));
-            library.Id.Should().BeGreaterThan(0);
-            library.Name.Should().Be("The .NET Library");
-            library.AccessToken.Should().NotBeEmpty();
+            var newLibrary = await this.ExecuteAction<NewLibraryResponse>(x => x.New(new NewLibraryRequest("The .NET Library")));
+            newLibrary.Id.Should().BeGreaterThan(0);
+            newLibrary.Name.Should().Be("The .NET Library");
+            newLibrary.AccessToken.Should().NotBeEmpty();
         }
 
         [Fact]
         public async void ShouldBeAbleToGetLibraryByAccessToken_AndBookCountShouldBeZero() 
         {
-            var newLibrary = await this.ExecuteAction<NewLibrary>(x => x.CreateNew("The .NET Library"));
-            var library = await this.ExecuteAction<LibrarySummary>(x => x.Get(newLibrary.AccessToken.ToString()));
+            var newLibrary = await this.ExecuteAction<NewLibraryResponse>(x => x.New(new NewLibraryRequest("The .NET Library")));
+            var library = await this.ExecuteAction<GetLibraryResponse>(x => x.Get(newLibrary.AccessToken.ToString()));
             library.Id.Should().Be(newLibrary.Id);
             library.Name.Should().Be(newLibrary.Name);
             library.BookCount.Should().Be(0);
@@ -66,7 +66,7 @@ namespace TheBooks.Tests
         [Fact]
         public async void ShouldBeAbleToDeleteLibraryByAccessToken() 
         {
-            var newLibrary = await this.ExecuteAction<NewLibrary>(x => x.CreateNew("The .NET Library"));
+            var newLibrary = await this.ExecuteAction<NewLibraryResponse>(x => x.New(new NewLibraryRequest("The .NET Library")));
             await this.ExecuteAction(x => x.Delete(newLibrary.AccessToken.ToString()));
         }
     }

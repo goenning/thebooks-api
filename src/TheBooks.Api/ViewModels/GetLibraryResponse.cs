@@ -2,7 +2,7 @@ using System;
 
 namespace TheBooks.Api.ViewModels
 { 
-  public class LibrarySummary
+  public class GetLibraryResponse
   {
       public int Id { get; set; }
       public string Name { get; set; }

@@ -18,25 +18,27 @@ namespace TheBooks.Api.Controllers
             this.db = db;
         }
         
-        [HttpPost, Route("new")]
-        public async Task<IActionResult> CreateNew(string name)
+        [HttpPost]
+        [ProducesResponseTypeAttribute(typeof(NewLibraryResponse), 200)]
+        public async Task<IActionResult> New([FromBody] NewLibraryRequest request)
         {
             var accessToken = Guid.NewGuid();
-            var param = new { name, accessToken };
+            var param = new { name = request.Name, accessToken };
             var id = await this.db.ExecuteScalarAsync<int>(@"INSERT INTO libraries (name, access_token, created_on, modified_on) values (@name, @accessToken, now(), now()) returning id", param);
-            return Ok(new NewLibrary(id, name, accessToken));
+            return Ok(new NewLibraryResponse(id, request.Name, accessToken));
         }
         
-        [HttpGet, Route("get")]
-        public async Task<IActionResult> Get(string accessToken)
+        [HttpGet]
+        [ProducesResponseTypeAttribute(typeof(GetLibraryResponse), 200)]
+        public async Task<IActionResult> Get([FromQuery] string accessToken)
         {
-            var header = await this.db.QueryFirstOrDefaultAsync<LibrarySummary>("SELECT id, name, access_token, created_on, modified_on FROM libraries WHERE access_token = @accessToken", new { accessToken });
-            if (header == null)
+            var response = await this.db.QueryFirstOrDefaultAsync<GetLibraryResponse>("SELECT id, name, access_token, created_on, modified_on FROM libraries WHERE access_token = @accessToken", new { accessToken });
+            if (response == null)
                 return NotFound();
-            return Ok(header);
+            return Ok(response);
         }
         
-        [HttpDelete, Route("delete")]
+        [HttpDelete]
         public async Task<IActionResult> Delete(string accessToken)
         {
             int count = await this.db.ExecuteAsync("DELETE FROM libraries WHERE access_token = @accessToken", new { accessToken });
