@@ -7,7 +7,7 @@ using TheBooks.Api.ViewModels;
 
 namespace TheBooks.Api.Controllers
 {
-    [Produces("application/json"), Route("libraries")]
+    [Produces("application/json"), Route("library")]
     public class LibraryController : Controller
     {
         private DbConnection db;
@@ -18,7 +18,8 @@ namespace TheBooks.Api.Controllers
         }
         
         [HttpPost]
-        [ProducesResponseTypeAttribute(typeof(NewLibraryResponse), 200)]
+        [ProducesResponse(200, typeof(NewLibraryResponse))]
+        [ProducesResponse(404)]
         public async Task<IActionResult> New([FromBody] NewLibraryRequest request)
         {
             var accessToken = Guid.NewGuid().ToString();
@@ -28,7 +29,8 @@ namespace TheBooks.Api.Controllers
         }
         
         [HttpGet]
-        [ProducesResponseTypeAttribute(typeof(GetLibraryResponse), 200)]
+        [ProducesResponse(200, typeof(GetLibraryResponse))]
+        [ProducesResponse(404)]
         public async Task<IActionResult> Get([FromQuery] string accessToken)
         {
             var response = await this.db.QueryFirstOrDefaultAsync<GetLibraryResponse>("SELECT id, name, access_token, created_on, modified_on FROM libraries WHERE access_token = @accessToken", new { accessToken });
@@ -38,6 +40,8 @@ namespace TheBooks.Api.Controllers
         }
         
         [HttpDelete]
+        [ProducesResponse(200)]
+        [ProducesResponse(404)]
         public async Task<IActionResult> Delete([FromQuery] string accessToken)
         {
             int count = await this.db.ExecuteAsync("DELETE FROM libraries WHERE access_token = @accessToken", new { accessToken });
