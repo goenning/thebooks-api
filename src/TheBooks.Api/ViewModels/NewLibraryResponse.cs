@@ -1,19 +1,17 @@
-using System;
-
 namespace TheBooks.Api.ViewModels
 { 
   public class NewLibraryResponse
   {
       public int Id { get; set; }
       public string Name { get; set; }
-      public Guid AccessToken { get; set; }
+      public string AccessToken { get; set; }
 
       public NewLibraryResponse()
       {
         
       }
 
-      public NewLibraryResponse(int id, string name, Guid accessToken)
+      public NewLibraryResponse(int id, string name, string accessToken)
       {
           this.Id = id;
           this.Name = name;
