@@ -26,7 +26,7 @@ namespace TheBooks.Tests
           var process = new Process();
           process.StartInfo = info;
           process.Start();
-          Console.Write(process.StandardOutput.ReadToEnd());
+          // Console.Write(process.StandardOutput.ReadToEnd());
           process.WaitForExit();
       }
 
