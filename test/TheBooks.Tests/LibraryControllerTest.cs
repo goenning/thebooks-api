@@ -4,30 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 using FluentAssertions;
 using FluentAssertions.Mvc;
 using TheBooks.Api.ViewModels;
-using System;
-using System.Threading.Tasks;
 
 namespace TheBooks.Tests
 {
-    public class LibraryControllerTest : DbTest
+    [Collection("ControllerTest")]
+    public class LibraryControllerTest : ControllerTest<LibraryController>
     {
-        private LibraryController controller;
-        public LibraryControllerTest()
+        public LibraryControllerTest() : base()
         {
             this.controller = new LibraryController(this.connection);
-        }
-
-        private async Task ExecuteAction(Func<LibraryController, Task<IActionResult>> action)
-        {
-            var result = await action(this.controller);
-            result.Should().BeOfType<OkResult>();
-        }
-
-        private async Task<T> ExecuteAction<T>(Func<LibraryController, Task<IActionResult>> action)
-        {
-            var result = await action(this.controller);
-            var ok = result.Should().BeOfType<OkObjectResult>().Subject;
-            return ok.Value.Should().BeAssignableTo<T>().Subject;
         }
 
         [Fact]
